@@ -1,4 +1,17 @@
- Console.WriteLine(@"
+ using System;
+    
+    namespace Calculadora
+    {
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                bool continuar = true;
+    
+                while (continuar)
+                {
+                    Console.Clear();
+                  Console.WriteLine(@"
                    _____                        ______ _       _                         ______ _           
                   /  ___|                       | ___ \ |     | |                        | ___ \ |          
                   \ `--. _   _ _ __ ___   __ _  | |_/ / | __ _| |_ __ _ _ __   ___  ___  | |_/ / |_   _ ___ 
@@ -14,3 +27,57 @@
                   6- Raiz cuadrada
                   7- Salir
                   ");
+                    int opcion = int.Parse(Console.ReadLine());
+    
+                    switch (opcion)
+                    {
+                        case 1:
+                            RealizarOperacion("suma");
+                            break;
+                        case 2:
+                            Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
+                            Console.ReadKey();
+                            break;
+                        case 3:
+                            Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
+                            Console.ReadKey();
+                            break;
+                        case 4:
+                            Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
+                            Console.ReadKey();
+                            break;
+                        case 5:
+                            Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
+                            Console.ReadKey();
+                            break;
+                        case 6:
+                            Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
+                            Console.ReadKey();
+                            break;
+                        case 7:
+                            continuar = false;
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+                }
+            }
+    
+            static void RealizarOperacion(string operacion)
+            {
+                Console.Write("Ingrese el primer número: ");
+                double num1 = double.Parse(Console.ReadLine());
+    
+                Console.Write("Ingrese el segundo número: ");
+                double num2 = double.Parse(Console.ReadLine());
+    
+                double resultado = operacion switch
+                {
+                    "suma" => num1 + num2
+                };
+    
+                Console.WriteLine($"El resultado de la {operacion} es: {resultado}");
+                Console.WriteLine("Presione cualquier tecla para continuar...");
+                Console.ReadKey();
+            }
