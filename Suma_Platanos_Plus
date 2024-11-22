@@ -35,8 +35,7 @@
                             RealizarOperacion("suma");
                             break;
                         case 2:
-                            Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
-                            Console.ReadKey();
+                            RealizarOperacion("resta");
                             break;
                         case 3:
                             Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
@@ -74,7 +73,8 @@
     
                 double resultado = operacion switch
                 {
-                    "suma" => num1 + num2
+                    "suma" => num1 + num2,
+                    "resta" => num1 - num2
                 };
     
                 Console.WriteLine($"El resultado de la {operacion} es: {resultado}");
