@@ -27,69 +27,98 @@
                   6- Raiz cuadrada
                   7- Salir
                   ");
-                    int opcion = int.Parse(Console.ReadLine());
-    
-                    switch (opcion)
-                    {
-                        case 1:
-                            RealizarOperacion("suma");
-                            break;
-                        case 2:
-                            RealizarOperacion("resta");
-                            break;
-                        case 3:
-                            RealizarOperacion("multiplicación");
-                            break;
-                        case 4:
-                            RealizarOperacion("división");
-                            break;
-                        case 5:
-                            RealizarOperacion("potencia");
-                            break;
-                        case 6:
-                            CalcularRaizCuadrada();
-                            break;
-                        case 7:
-                            continuar = false;
-                            break;
-                        default:
-                            Console.WriteLine("Opción no válida.");
-                            break;
-                    }
+if (!int.TryParse(Console.ReadLine(), out int opcion) || opcion < 1 || opcion > 7)
+                {
+                    Console.WriteLine("Opción no válida. Presione cualquier tecla para continuar...");
+                    Console.ReadKey();
+                    continue;
+                }
+
+                switch (opcion)
+                {
+                    case 1:
+                        RealizarOperacion("suma");
+                        break;
+                    case 2:
+                        RealizarOperacion("resta");
+                        break;
+                    case 3:
+                        RealizarOperacion("multiplicación");
+                        break;
+                    case 4:
+                        RealizarOperacion("división");
+                        break;
+                    case 5:
+                        RealizarOperacion("potencia");
+                        break;
+                    case 6:
+                        CalcularRaizCuadrada();
+                        break;
+                    case 7:
+                        continuar = false;
+                        break;
                 }
             }
-    
-            static void RealizarOperacion(string operacion)
-            {
-                Console.Write("Ingrese el primer número: ");
-                double num1 = double.Parse(Console.ReadLine());
-    
-                Console.Write("Ingrese el segundo número: ");
-                double num2 = double.Parse(Console.ReadLine());
-    
-                double resultado = operacion switch
-                {
-                    "suma" => num1 + num2,
-                    "resta" => num1 - num2,
-                    "multiplicación" => num1 * num2,
-                    "división" => num2 != 0 ? num1 / num2 : double.NaN,
-                    "potencia" => Math.Pow(num1, num2),
-                    _ => 0
-                };
-    
-                Console.WriteLine($"El resultado de la {operacion} es: {resultado}");
-                Console.WriteLine("Presione cualquier tecla para continuar...");
-                Console.ReadKey();
-            }
-             static void CalcularRaizCuadrada()
-            {
-            Console.Write("Ingrese el número: ");
-            double num = double.Parse(Console.ReadLine());
-            double resultado = Math.Sqrt(num);
+        }
 
-            Console.WriteLine($"La raíz cuadrada de {num} es: {resultado}");
+        static void RealizarOperacion(string operacion)
+        {
+            double num1 = LeerNumero("Ingrese el primer número: ");
+            double num2 = LeerNumero("Ingrese el segundo número: ");
+
+            double resultado = operacion switch
+            {
+                "suma" => num1 + num2,
+                "resta" => num1 - num2,
+                "multiplicación" => num1 * num2,
+                "división" => num2 != 0 ? num1 / num2 : double.NaN,
+                "potencia" => Math.Pow(num1, num2),
+                _ => 0
+            };
+
+            if (operacion == "división" && double.IsNaN(resultado))
+                Console.WriteLine("Error: No se puede dividir entre cero.");
+            else
+                Console.WriteLine($"El resultado de la {operacion} es: {resultado}");
+
             Console.WriteLine("Presione cualquier tecla para continuar...");
             Console.ReadKey();
+        }
+
+        static void CalcularRaizCuadrada()
+        {
+            double num = LeerNumero("Ingrese el número: ");
+
+            if (num < 0)
+            {
+                Console.WriteLine("Error: No se puede calcular la raíz cuadrada de un número negativo.");
+            }
+            else
+            {
+                double resultado = Math.Sqrt(num);
+                Console.WriteLine($"La raíz cuadrada de {num} es: {resultado}");
+            }
+
+            Console.WriteLine("Presione cualquier tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        static double LeerNumero(string mensaje)
+        {
+            double numero;
+
+            while (true)
+            {
+                Console.Write(mensaje);
+                if (double.TryParse(Console.ReadLine(), out numero))
+                {
+                    return numero;
+                }
+                else
+                {
+                    Console.WriteLine("Entrada inválida. Por favor, ingrese un número válido.");
+                }
+            }
         }
     }
 }
