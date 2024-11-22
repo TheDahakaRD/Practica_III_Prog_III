@@ -47,8 +47,7 @@
                             RealizarOperacion("potencia");
                             break;
                         case 6:
-                            Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
-                            Console.ReadKey();
+                            CalcularRaizCuadrada();
                             break;
                         case 7:
                             continuar = false;
@@ -82,3 +81,15 @@
                 Console.WriteLine("Presione cualquier tecla para continuar...");
                 Console.ReadKey();
             }
+             static void CalcularRaizCuadrada()
+            {
+            Console.Write("Ingrese el número: ");
+            double num = double.Parse(Console.ReadLine());
+            double resultado = Math.Sqrt(num);
+
+            Console.WriteLine($"La raíz cuadrada de {num} es: {resultado}");
+            Console.WriteLine("Presione cualquier tecla para continuar...");
+            Console.ReadKey();
+        }
+    }
+}
