@@ -44,8 +44,7 @@
                             RealizarOperacion("división");
                             break;
                         case 5:
-                            Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
-                            Console.ReadKey();
+                            RealizarOperacion("potencia");
                             break;
                         case 6:
                             Console.WriteLine("Opcion No disponible, Preciona Enter Para Volver Al Menu");
@@ -74,7 +73,9 @@
                     "suma" => num1 + num2,
                     "resta" => num1 - num2,
                     "multiplicación" => num1 * num2,
-                    "división" => num2 != 0 ? num1 / num2 : double.NaN
+                    "división" => num2 != 0 ? num1 / num2 : double.NaN,
+                    "potencia" => Math.Pow(num1, num2),
+                    _ => 0
                 };
     
                 Console.WriteLine($"El resultado de la {operacion} es: {resultado}");
